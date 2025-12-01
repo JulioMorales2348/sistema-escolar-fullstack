@@ -1,0 +1,184 @@
+// =========================
+// LAYOUT PRINCIPAL (WRAPPER)
+// =========================
+.wrapper {
+  margin: 0;
+  min-height: 100vh;
+  width: 100%;
+  // Fondo de imagen
+  background-image: url('/assets/images/fondo-azul.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  // MARGEN RESPONSIVO (La clave para que no se encime con el sidebar)
+  margin-left: 220px; // Desktop: Deja espacio al sidebar
+  transition: margin-left 0.3s;
+
+  @media (max-width: 992px) {
+    margin-left: 0; // Móvil/Tablet vertical: Ocupa todo el ancho
+  }
+}
+
+body {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+// Contenedor general del formulario
+.reg-shell {
+  display: grid;
+  gap: 20px;
+  padding: clamp(16px, 3vw, 28px); // Padding dinámico
+
+  // Centrar contenido si la pantalla es muy grande
+  display: flex;
+  justify-content: center;
+}
+
+// =========================
+// TARJETA DEL FORMULARIO
+// =========================
+.role-card {
+  width: 100%;
+  max-width: 980px; // Ancho máximo para que no se estire demasiado en monitores grandes
+  margin-inline: auto;
+  padding: 20px;
+
+  @media (max-width: 576px) {
+    padding: 10px; // Menos padding en celulares para ganar espacio
+  }
+
+  .role-card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eee;
+
+    // En móviles muy pequeños, apilar header
+    @media (max-width: 450px) {
+      flex-direction: column-reverse;
+      align-items: flex-end; // Botón regresar arriba a la derecha
+      gap: 10px;
+    }
+  }
+
+  .actions-header-colum {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2px;
+    width: 100%;
+  }
+
+  // =========================
+  // TIPOGRAFÍA RESPONSIVA
+  // =========================
+  .title-card {
+    width: 100%;
+    font-family: Nexa-Bold, Arial, sans-serif;
+    // Clamp: Mínimo 1.2rem, Ideal 4vw, Máximo 2rem
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    margin-bottom: 0.25rem;
+    color: #231F20;
+    line-height: 1.2;
+  }
+
+  .subtitle-card {
+    width: 100%;
+    font-family: Nexa-Light, Arial, sans-serif;
+    font-size: clamp(0.9rem, 3vw, 1.25rem);
+    color: #555;
+    margin-top: 0.5rem;
+  }
+}
+
+// =========================
+// ELEMENTOS DEL FORMULARIO
+// =========================
+
+// Checkboxes y Radio Buttons
+.role-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; // Permite que bajen si no caben
+  gap: 12px 20px;
+  margin-top: 8px;
+}
+
+.role-pill {
+  display: inline-flex;
+  justify-content: center;
+  text-align: center;
+  padding: 4px 10px;
+}
+
+.text-radio {
+  font-size: 1.1rem;
+  font-family: Nexa, Arial, sans-serif;
+  color: #231F20;
+}
+
+// Botón Regresar (Flecha)
+.back-btn {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.back-icon {
+  width: auto !important;
+  height: auto !important;
+  font-size: 1.9rem;
+  color: #0092B8;
+}
+
+// Botón Registrar/Actualizar
+.btn-registrar {
+  background-color: #0092B8;
+  color: white;
+  font-family: Nexa-Bold;
+  font-size: 1.1rem;
+  padding: 0.5rem 2rem;
+  border-radius: 8px;
+
+  // En móvil botón ancho completo para facilitar el toque
+  width: 100%;
+
+  @media (min-width: 576px) {
+    width: auto; // En PC tamaño normal
+  }
+
+  &:hover {
+    background-color: #007a99;
+  }
+}
+
+// =========================
+// OVERRIDES DE MATERIAL
+// =========================
+::ng-deep .mat-mdc-radio-button .mdc-form-field {
+  font-family: Nexa;
+}
+
+::ng-deep .mat-mdc-radio-button.mat-accent {
+  --mdc-radio-selected-focus-icon-color: #0092B8;
+  --mdc-radio-selected-hover-icon-color: #0092B8;
+  --mdc-radio-selected-icon-color: #0092B8;
+  --mdc-radio-selected-pressed-icon-color: #0092B8;
+  --mat-radio-checked-ripple-color: #0092B8;
+}
+
+// Ajuste de errores para que no desplacen mucho el layout
+mat-error {
+  font-size: 0.8rem;
+  margin-top: 0 !important;
+}

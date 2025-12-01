@@ -1,0 +1,54 @@
+// Ajuste del margen izquierdo para respetar el sidebar
+.main-content-graficas {
+  margin-left: 220px;
+  transition: margin-left 0.3s;
+  padding: 20px;
+}
+
+@media (max-width: 992px) {
+  .main-content-graficas {
+    margin-left: 0;
+    padding: 10px;
+  }
+}
+
+.header-home {
+  width: 100%;
+  height: 10px;
+}
+
+// Títulos
+.title-perfil, .title-table {
+  font-family: Nexa-Bold;
+  text-transform: capitalize;
+  color: #2B5279;
+}
+.title-perfil { font-size: 35px; }
+.title-table { font-size: 25px; }
+
+// GRID RESPONSIVO PARA LAS GRÁFICAS
+.graph-section, .user-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+// Contenedor de cada gráfica (Tarjeta blanca)
+.graph {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+// Asegurar que el canvas ocupe el espacio disponible
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
