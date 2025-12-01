@@ -42,6 +42,8 @@ MIDDLEWARE = [
 # Configuración de CORS: define orígenes permitidos y quita CORS_ORIGIN_ALLOW_ALL
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:4200',
+    'https://sistema-escolar-api.onrender.com',
+    'https://sistema-escolar-fullstack.vercel.app'
 ]
 CORS_ALLOW_CREDENTIALS = True
 
