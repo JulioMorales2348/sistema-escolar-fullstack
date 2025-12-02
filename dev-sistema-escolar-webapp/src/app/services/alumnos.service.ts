@@ -40,21 +40,33 @@ export class AlumnosService {
     }
   }
 
-  //Validación para el formulario
+  //Validación para el formulario (AÑADIDAS NUEVAS VALIDACIONES)
   public validarAlumno(data: any, editar: boolean){
     console.log("Validando alumno... ", data);
     let error: any = [];
 
+    // Validaciones para 'matricula' (Solo números)
     if(!this.validatorService.required(data["matricula"])){
       error["matricula"] = this.errorService.required;
+    } else if(!this.validatorService.numeric(data["matricula"])) {
+      // Usamos numeric, ya que es la validación para solo números
+      error["matricula"] = "La matrícula solo debe contener números.";
     }
 
+    // Validaciones para 'first_name' (Solo letras)
     if(!this.validatorService.required(data["first_name"])){
       error["first_name"] = this.errorService.required;
+    } else if(!this.validatorService.onlyLetters(data["first_name"])) {
+      // 🛑 Asumo que existe this.validatorService.onlyLetters()
+      error["first_name"] = "El nombre solo debe contener letras.";
     }
 
+    // Validaciones para 'last_name' (Solo letras)
     if(!this.validatorService.required(data["last_name"])){
       error["last_name"] = this.errorService.required;
+    } else if(!this.validatorService.onlyLetters(data["last_name"])) {
+      // 🛑 Asumo que existe this.validatorService.onlyLetters()
+      error["last_name"] = "Los apellidos solo deben contener letras.";
     }
 
     if(!this.validatorService.required(data["email"])){
@@ -180,5 +192,6 @@ export class AlumnosService {
     } else {
       headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     }
-    return this.http.delete<any>(`${environment.url_api}/alumnos/?id=${idAlumno}`, { headers });  }
+    return this.http.delete<any>(`${environment.url_api}/alumnos/?id=${idAlumno}`, { headers });
+  }
 }

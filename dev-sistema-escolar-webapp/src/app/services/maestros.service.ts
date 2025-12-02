@@ -40,21 +40,33 @@ export class MaestrosService {
     }
   }
 
-  //Validación para el formulario
+  //Validación para el formulario (AÑADIDAS NUEVAS VALIDACIONES)
   public validarMaestro(data: any, editar: boolean){
     console.log("Validando maestro... ", data);
     let error: any = [];
 
+    // Validaciones para 'id_trabajador' (ID alfanumérico)
     if(!this.validatorService.required(data["id_trabajador"])){
       error["id_trabajador"] = this.errorService.required;
+    } else if(!this.validatorService.alphanumeric(data["id_trabajador"])) {
+      // 🛑 Asumo que existe this.validatorService.alphanumeric()
+      error["id_trabajador"] = "El ID de trabajador solo debe contener letras y números.";
     }
 
+    // Validaciones para 'first_name' (Solo letras)
     if(!this.validatorService.required(data["first_name"])){
       error["first_name"] = this.errorService.required;
+    } else if(!this.validatorService.onlyLetters(data["first_name"])) {
+      // 🛑 Asumo que existe this.validatorService.onlyLetters()
+      error["first_name"] = "El nombre solo debe contener letras.";
     }
 
+    // Validaciones para 'last_name' (Solo letras)
     if(!this.validatorService.required(data["last_name"])){
       error["last_name"] = this.errorService.required;
+    } else if(!this.validatorService.onlyLetters(data["last_name"])) {
+      // 🛑 Asumo que existe this.validatorService.onlyLetters()
+      error["last_name"] = "Los apellidos solo deben contener letras.";
     }
 
     if(!this.validatorService.required(data["email"])){
