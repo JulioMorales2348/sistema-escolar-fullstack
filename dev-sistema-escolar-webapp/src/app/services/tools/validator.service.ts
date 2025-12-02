@@ -38,7 +38,6 @@ export class ValidatorService {
   }
 
   numeric(input:any){
-    // Asegura que solo sean números enteros o decimales (aunque tu uso solo chequea enteros)
     return (!isNaN(parseFloat(input)) && isFinite(input));
   }
 
@@ -72,20 +71,39 @@ export class ValidatorService {
 
   }
 
- 
-  onlyLetters(input:any){
+
+  onlyLetters(input:any): boolean{
+    // Expresión regular para letras, acentos, ñ/Ñ y espacios.
     let pat = new RegExp('^([A-Za-zÑñáéíóúÁÉÍÓÚ ]+)$');
     return pat.test(input);
   }
 
  
-  alphanumeric(input:any){
-    // Permite letras (mayúsculas/minúsculas) y números
+  alphanumeric(input:any): boolean{
+    // Permite letras (mayúsculas/minúsculas) y números SIN espacios.
     let pat = new RegExp('^([A-Za-z0-9]+)$');
     return pat.test(input);
   }
 
- 
+
+  minAge(input: any, age: number): boolean {
+      if (!this.date(input)) {
+          return false;
+      }
+
+      const birthDate = new Date(input);
+      const today = new Date();
+
+      if (birthDate.getTime() > today.getTime()) {
+          return false;
+    }
+
+    let limitDate = new Date(today.getFullYear() - age, today.getMonth(), today.getDate());
+
+    return birthDate.getTime() <= limitDate.getTime();
+  }
+
+  // Dejamos la función 'words' como alias o por si se usa en otra parte
   words(input:any){
     return this.onlyLetters(input);
   }
