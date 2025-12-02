@@ -80,16 +80,9 @@ export class RegistroMaestrosComponent implements OnInit {
     this.location.back();
   }
 
-  // 🛠️ Función añadida para restringir la entrada solo a letras
   public soloLetras(event: KeyboardEvent) {
     const charCode = event.key.charCodeAt(0);
-    // Permitir solo letras (mayúsculas y minúsculas), espacio, y caracteres de control (Backspace, Delete, etc.)
-    // La comprobación de mayúsculas/minúsculas simple funciona para ASCII básico.
-    // Para incluir acentos y ñ, se debería usar un regex, pero por simplicidad de keypress:
-    // Permitir letras básicas [a-zA-Z], espacio, y caracteres de acento/ñ si son detectados.
     const pattern = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]$/;
-
-    // Si la tecla presionada no coincide con el patrón Y no es una tecla de control (como Tab, Flechas)
     if (!pattern.test(event.key) && event.key.length === 1) {
         event.preventDefault();
     }

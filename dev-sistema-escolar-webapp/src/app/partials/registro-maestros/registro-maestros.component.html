@@ -15,14 +15,12 @@
 
       <mat-form-field class="mat-input" appearance="outline">
           <mat-label>Nombre</mat-label>
-          <!-- 🛠️ AÑADIDA RESTRICCIÓN DE ENTRADA -->
           <input matInput [(ngModel)]="maestro.first_name" placeholder="Escribe nombre" (keypress)="soloLetras($event)">
       </mat-form-field>
       <div *ngIf="errors.first_name" class="invalid-feedback">{{ errors.first_name }}</div>
 
       <mat-form-field class="mat-input" appearance="outline">
           <mat-label>Apellidos</mat-label>
-          <!-- 🛠️ AÑADIDA RESTRICCIÓN DE ENTRADA -->
           <input matInput [(ngModel)]="maestro.last_name" placeholder="Escribe apellidos" (keypress)="soloLetras($event)">
       </mat-form-field>
       <div *ngIf="errors.last_name" class="invalid-feedback">{{ errors.last_name }}</div>
@@ -47,7 +45,6 @@
       </mat-form-field>
       <div *ngIf="errors.confirmar_password" class="invalid-feedback">{{ errors.confirmar_password }}</div>
 
-      <!-- Cambio de input de fecha -->
       <mat-form-field class="mat-input" appearance="outline">
         <mat-label>Fecha de nacimiento</mat-label>
         <input matInput [matDatepicker]="picker" [(ngModel)]="maestro.fecha_nacimiento" (focus)="picker.open()" placeholder="Agregar fecha" (dateChange)="changeFecha($event)" type="string">
