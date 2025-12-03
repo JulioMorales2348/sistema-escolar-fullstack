@@ -149,8 +149,4 @@ export class NavbarUserComponent implements OnInit {
     return this.isAdmin() || this.isTeacher();
   }
 
-  canSeeEventsMenu(): boolean {
-    return this.isAdmin() || this.isTeacher() || this.isStudent();
-  }
-
 }

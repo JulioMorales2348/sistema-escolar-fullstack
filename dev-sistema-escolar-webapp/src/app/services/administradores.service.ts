@@ -47,7 +47,6 @@ export class AdministradoresService {
     if(!this.validatorService.required(data["clave_admin"])){
       error["clave_admin"] = this.errorService.required;
     } else if(!this.validatorService.alphanumeric(data["clave_admin"])) {
-      // 🛑 Asumo que existe this.validatorService.alphanumeric()
       error["clave_admin"] = "La clave de administrador solo debe contener letras y números.";
     }
 
@@ -55,7 +54,6 @@ export class AdministradoresService {
     if(!this.validatorService.required(data["first_name"])){
       error["first_name"] = this.errorService.required;
     } else if(!this.validatorService.onlyLetters(data["first_name"])) {
-      // 🛑 Asumo que existe this.validatorService.onlyLetters()
       error["first_name"] = "El nombre solo debe contener letras.";
     }
 
@@ -63,7 +61,6 @@ export class AdministradoresService {
     if(!this.validatorService.required(data["last_name"])){
       error["last_name"] = this.errorService.required;
     } else if(!this.validatorService.onlyLetters(data["last_name"])) {
-      // 🛑 Asumo que existe this.validatorService.onlyLetters()
       error["last_name"] = "Los apellidos solo deben contener letras.";
     }
 

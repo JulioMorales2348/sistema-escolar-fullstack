@@ -14,7 +14,6 @@ export class EditarEventoModalComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Solo recibimos datos para mostrar si fuera necesario, pero no hacemos acciones aquí
   }
 
   public cerrar_modal(){

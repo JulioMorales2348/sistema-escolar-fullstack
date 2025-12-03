@@ -21,7 +21,7 @@
         <span class="material-icons">bar_chart</span> <span>Gráficas</span>
       </li>
       <!-- DROPDOWN EVENTOS -->
-      <li *ngIf="canSeeEventsMenu()" class="scoop-navbar-item has-submenu" (click)="toggleMenu('eventos')" [class.expanded]="expandedMenu === 'eventos'">
+      <li *ngIf="canSeeStudentItems()" class="scoop-navbar-item has-submenu" (click)="toggleMenu('eventos')" [class.expanded]="expandedMenu === 'eventos'">
         <div class="item-content">
           <span class="material-icons">event</span>
           <span>Eventos</span>
@@ -83,7 +83,7 @@
           <span class="material-icons">bar_chart</span> <span>Gráficas</span>
         </li>
         <!-- DROPDOWN EVENTOS MÓVIL -->
-        <li *ngIf="canSeeEventsMenu()" class="scoop-navbar-item has-submenu" (click)="toggleMenu('eventos')" [class.expanded]="expandedMenu === 'eventos'">
+        <li *ngIf="canSeeStudentItems()" class="scoop-navbar-item has-submenu" (click)="toggleMenu('eventos')" [class.expanded]="expandedMenu === 'eventos'">
             <div class="item-content">
               <span class="material-icons">event</span>
               <span>Eventos</span>

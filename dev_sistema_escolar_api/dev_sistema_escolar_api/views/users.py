@@ -159,7 +159,7 @@ class ListaResponsables(APIView):
     def get(self, request):
         responsables = []
         
-        # 1. Obtener Administradores
+        # Obtener Administradores
         # Usamos select_related para optimizar la consulta a la tabla User
         admins = Administradores.objects.filter(user__is_active=1).select_related('user')
         for admin in admins:
@@ -168,10 +168,10 @@ class ListaResponsables(APIView):
                 "id": admin.id,
                 "nombre": nombre_completo,
                 "rol": "Administrador",
-                "value": f"{nombre_completo} (Admin)" # Valor para guardar en BD
+                "value": f"{nombre_completo} (Admin)" 
             })
             
-        # 2. Obtener Maestros
+        # Obtener Maestros
         maestros = Maestros.objects.filter(user__is_active=1).select_related('user')
         for maestro in maestros:
             nombre_completo = f"{maestro.user.first_name} {maestro.user.last_name}"
@@ -179,7 +179,7 @@ class ListaResponsables(APIView):
                 "id": maestro.id,
                 "nombre": nombre_completo,
                 "rol": "Maestro",
-                "value": f"{nombre_completo} (Maestro)" # Valor para guardar en BD
+                "value": f"{nombre_completo} (Maestro)" 
             })
             
         # Devolvemos la lista combinada

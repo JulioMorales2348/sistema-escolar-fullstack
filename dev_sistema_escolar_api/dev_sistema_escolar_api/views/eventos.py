@@ -17,7 +17,7 @@ class EventosAll(generics.CreateAPIView):
     def get(self, request, *args, **kwargs):
         # Detectamos los roles
         es_maestro = request.user.groups.filter(name='maestro').exists()
-        es_alumno = request.user.groups.filter(name='alumno').exists() # <--- NUEVO
+        es_alumno = request.user.groups.filter(name='alumno').exists() 
 
         if es_maestro:
             # Filtro para Maestros

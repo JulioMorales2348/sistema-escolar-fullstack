@@ -52,7 +52,6 @@ export class EventosAcademicosScreenComponent implements OnInit, AfterViewInit {
     if(this.token == ""){
       this.router.navigate(["/"]);
     }
-
     this.obtenerEventos();
   }
 
@@ -106,6 +105,7 @@ export class EventosAcademicosScreenComponent implements OnInit, AfterViewInit {
     );
   }
 
+  //Editar evento
   public goEditar(id: number) {
     const dialogRef = this.dialog.open(EditarEventoModalComponent, {
       data: { id: id },
@@ -120,6 +120,7 @@ export class EventosAcademicosScreenComponent implements OnInit, AfterViewInit {
     });
   }
 
+  //Eliminar evento
   public delete(idEvento: number) {
     const dialogRef = this.dialog.open(EliminarEventoModalComponent, {
       data: { id: idEvento },

@@ -14,7 +14,7 @@ export class RegistroEventosScreenComponent implements OnInit {
 
   public evento: any = {};
   public errors: any = {};
-  public minDate: Date = new Date(); 
+  public minDate: Date = new Date();
   public lista_responsables: any[] = [];
   public editar: boolean = false;
   public idEvento: number = 0;
@@ -24,13 +24,13 @@ export class RegistroEventosScreenComponent implements OnInit {
     private router: Router,
     public activatedRoute: ActivatedRoute,
     private eventosService: EventosService
-    // Quitamos MatDialog de aquí
   ) { }
 
   ngOnInit(): void {
+    // Inicializar el formulario con la estructura base
     this.evento = this.eventosService.esquemaEvento();
     this.obtenerResponsables();
-
+    // Verificar si es edición
     if(this.activatedRoute.snapshot.params['id'] != undefined){
       this.editar = true;
       this.idEvento = this.activatedRoute.snapshot.params['id'];
@@ -38,7 +38,7 @@ export class RegistroEventosScreenComponent implements OnInit {
         (response)=>{
           this.evento = response;
           if(this.evento.publico_objetivo && typeof this.evento.publico_objetivo === 'string'){
-             this.evento.publico_objetivo = this.evento.publico_objetivo.split(', ');
+            this.evento.publico_objetivo = this.evento.publico_objetivo.split(', ');
           }
         }, (error)=>{
           alert("No se pudo obtener el evento");
@@ -47,9 +47,6 @@ export class RegistroEventosScreenComponent implements OnInit {
     }
   }
 
-  // ... obtenerResponsables, goBack, changeFecha, checkboxChange, isEstudianteSelected, registrar ...
-  // (Esas funciones se quedan igual que antes)
-  
   public obtenerResponsables() {
     this.eventosService.obtenerResponsables().subscribe(
       (response) => { this.lista_responsables = response; },
@@ -96,7 +93,7 @@ export class RegistroEventosScreenComponent implements OnInit {
     }
     const eventoAEnviar = { ...this.evento };
     if(Array.isArray(this.evento.publico_objetivo)){
-        eventoAEnviar.publico_objetivo = this.evento.publico_objetivo.join(', '); 
+        eventoAEnviar.publico_objetivo = this.evento.publico_objetivo.join(', ');
     }
 
     this.eventosService.registrarEvento(eventoAEnviar).subscribe(
@@ -110,9 +107,7 @@ export class RegistroEventosScreenComponent implements OnInit {
     );
   }
 
-  // 👇 ACTUALIZAR AHORA ES DIRECTO (SIN MODAL)
   public actualizar() {
-    // 1. Validar
     this.errors = {};
     this.errors = this.eventosService.validarEvento(this.evento);
     if (Object.keys(this.errors).length > 0) {
@@ -124,13 +119,11 @@ export class RegistroEventosScreenComponent implements OnInit {
       return false;
     }
 
-    // 2. Preparar datos
     const eventoAEnviar = { ...this.evento };
     if(Array.isArray(this.evento.publico_objetivo)){
-      eventoAEnviar.publico_objetivo = this.evento.publico_objetivo.join(', '); 
+      eventoAEnviar.publico_objetivo = this.evento.publico_objetivo.join(', ');
     }
 
-    // 3. Llamar servicio directo
     this.eventosService.actualizarEvento(eventoAEnviar).subscribe(
       (response) => {
         alert("Evento actualizado correctamente");
